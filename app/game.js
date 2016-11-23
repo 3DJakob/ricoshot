@@ -1,5 +1,6 @@
 var canvas = document.getElementById('gameCanvas')
 var ctx = canvas.getContext('2d')
+var Image = window.Image
 
 var canvasX
 var canvasY

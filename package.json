@@ -3,10 +3,13 @@
   "version": "1.0.0",
   "description": "Ricoshot is a top down shooter game that incorporates the mechanics of ricochet.",
   "main": "game.js",
-  "dependencies": {},
+  "dependencies": {
+    "browserify": "^13.1.1"
+  },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "browserify app/index.js -o build.js"
   },
   "repository": {
     "type": "git",
