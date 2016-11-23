@@ -1,0 +1,23 @@
+{
+  "name": "ricoshot",
+  "version": "1.0.0",
+  "description": "Ricoshot is a top down shooter game that incorporates the mechanics of ricochet.",
+  "main": "game.js",
+  "dependencies": {
+    "snapsvg": "^0.4.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/3djakob/ricoshot.git"
+  },
+  "author": "Jakob Unnebäck",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/3djakob/ricoshot/issues"
+  },
+  "homepage": "https://github.com/3djakob/ricoshot#readme"
+}

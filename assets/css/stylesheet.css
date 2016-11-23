@@ -1,0 +1,36 @@
+body {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+h1, h2, h3, a, p {
+  font-family: 'Lato', sans-serif;
+  text-decoration: none;
+  font-weight: 100;
+}
+
+h1, h2 {
+  margin-bottom: 0;
+}
+
+h2 {
+  margin-top: 5px;
+}
+
+canvas {
+  border: 1px solid #000;
+}
+
+#gameArea {
+  position: absolute;
+  left:     50%;
+  top:      50%;
+  border: 1px solid #bada05;
+}
+
+#gameCanvas {
+  width: 100%;
+  height: 100%;
+}
