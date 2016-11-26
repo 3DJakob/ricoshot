@@ -29,8 +29,3 @@ canvas {
   top:      50%;
   border: 1px solid #bada05;
 }
-
-#gameCanvas {
-  width: 100%;
-  height: 100%;
-}

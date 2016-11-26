@@ -1,60 +1,67 @@
-var canvas = document.getElementById('gameCanvas')
-var ctx = canvas.getContext('2d')
-var Image = window.Image
+class Game {
+  constructor ({ keyboard }) {
+    this.keyboard = keyboard
 
-var canvasX
-var canvasY
+    this.canvas = document.getElementById('gameCanvas')
+    this.ctx = this.canvas.getContext('2d')
 
-// Player variables
-var playerReady = false
-var playerImage = new Image()
-playerImage.onload = function () { playerReady = true }
-playerImage.src = 'assets/graphics/player.png'
-var playerX = canvasX / 2
-var playerY = canvasY / 2
-var playerDX
-var playerDY
+    this.entities = []
 
-//  Player draw
-function drawPlayer () {
-  if (playerReady) {
-    ctx.drawImage(playerImage, playerX, playerY)
+    window.addEventListener('resize', () => this.resize())
+    this.resize()
+  }
+
+  resize () {
+    if (window.innerWidth > 1600 && window.innerHeight - 150 > 900) {
+      this.scale = 1
+    } else {
+      this.scale = 0.5
+    }
+
+    this.canvas.width = 1600 * this.scale
+    this.canvas.height = 900 * this.scale
+  }
+
+  addEntity (entity) {
+    this.entities.push(entity)
+  }
+
+  startGameLoop () {
+    let lastTime = null
+
+    const gameLoop = (currentTime) => {
+      if (lastTime !== null) {
+        this.step(currentTime - lastTime)
+      }
+
+      this.draw()
+
+      lastTime = currentTime
+      window.requestAnimationFrame(gameLoop)
+    }
+
+    window.requestAnimationFrame(gameLoop)
+  }
+
+  step (dt) {
+    for (const entity of this.entities) {
+      entity.step(dt, { keyboard: this.keyboard })
+    }
+  }
+
+  draw () {
+    this.ctx.save()
+
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
+
+    this.ctx.scale(this.scale, this.scale)
+
+    for (const entity of this.entities) {
+      entity.draw(this.ctx)
+    }
+
+    this.ctx.restore()
   }
 }
 
-// Text draw
-function drawHello () {
-  ctx.textAlign = 'center'
-  ctx.font = '16px sans-serif'
-  ctx.fillText('Size: ' + canvas.width, canvasX / 4, 23)
-  ctx.fillText('X: ' + playerX, canvasX / 2, 23)
-  ctx.fillText('Y: ' + playerY, canvasX * 3 / 4, 23)
-  // ctx.fillText('canvasX: ' + canvasX, canvasX * 3 / 4, 23)
-}
-
-// Draw
-function draw () {
-  ctx.clearRect(0, 0, canvas.width, canvas.height)
-  drawHello()
-  drawPlayer()
-}
-
-// Game loop
-function gameLoop (currentTime) {
-  draw()
-  canvasX = canvas.width
-  canvasY = canvas.height
-  if (isNaN(playerX)) {
-    playerX = canvasX / 2
-  }
-  if (isNaN(playerY)) {
-    playerY = canvasY / 2
-  }
-  window.requestAnimationFrame(gameLoop)
-}
-
-window.requestAnimationFrame(gameLoop)
-
-window.addEventListener('resize', () => {
-
-})
+module.exports = Game
