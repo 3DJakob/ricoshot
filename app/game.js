@@ -7,6 +7,11 @@ class Game {
 
     this.entities = []
 
+    this.canvas.addEventListener('mousemove', ev => {
+      this.mouseX = (ev.clientX - this.canvas.offsetLeft) / this.scale
+      this.mouseY = (ev.clientY - this.canvas.offsetTop) / this.scale
+    })
+
     window.addEventListener('resize', () => this.resize())
     this.resize()
   }
@@ -57,7 +62,7 @@ class Game {
     this.ctx.scale(this.scale, this.scale)
 
     for (const entity of this.entities) {
-      entity.draw(this.ctx)
+      entity.draw(this, this.ctx)
     }
 
     this.ctx.restore()

@@ -94,13 +94,33 @@ class Player {
     this.y += this.dy * dt
   }
 
-  draw (ctx) {
+  draw (game, ctx) {
+    const { mouseX, mouseY } = game
+
     ctx.save()
 
     ctx.translate(this.x, this.y)
     ctx.translate(-this.anchorX, -this.anchorY)
 
     ctx.drawImage(this.img, 0, 0)
+
+    ctx.restore()
+    ctx.save()
+
+    // Crossair
+    ctx.beginPath()
+    ctx.moveTo(mouseX + 0.5, mouseY - 20 + 0.5)
+    ctx.lineTo(mouseX + 0.5, mouseY + 20 + 0.5)
+    ctx.moveTo(mouseX - 20 + 0.5, mouseY + 0.5)
+    ctx.lineTo(mouseX + 20 + 0.5, mouseY + 0.5)
+    ctx.stroke()
+
+    //  Projectory
+    ctx.beginPath()
+    ctx.moveTo(this.x, this.y)
+    ctx.lineTo(mouseX, mouseY)
+    ctx.setLineDash([10, 100])
+    ctx.stroke()
 
     ctx.restore()
   }
