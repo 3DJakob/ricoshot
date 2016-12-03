@@ -21,4 +21,9 @@ Keyboard.UP = 38
 Keyboard.RIGHT = 39
 Keyboard.DOWN = 40
 
+Keyboard.A = 65
+Keyboard.D = 68
+Keyboard.S = 83
+Keyboard.W = 87
+
 module.exports = Keyboard

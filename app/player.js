@@ -1,4 +1,4 @@
-const { UP, DOWN, RIGHT, LEFT } = require('./keyboard')
+const { W, S, D, A } = require('./keyboard')
 const { Image } = window
 
 const playerImage = new Promise(resolve => {
@@ -61,31 +61,31 @@ class Player {
   }
 
   step (dt, { keyboard }) {
-    if (keyboard.isPressed(RIGHT) && keyboard.isPressed(LEFT) && keyboard.isPressed(DOWN) && keyboard.isPressed(UP) || !keyboard.isPressed(RIGHT) && !keyboard.isPressed(LEFT) && !keyboard.isPressed(DOWN) && !keyboard.isPressed(UP)) {
+    if (keyboard.isPressed(D) && keyboard.isPressed(A) && keyboard.isPressed(S) && keyboard.isPressed(W) || !keyboard.isPressed(D) && !keyboard.isPressed(A) && !keyboard.isPressed(S) && !keyboard.isPressed(W)) {
       this.dx = acceleration(this.dx, 0, ACCELERATION, dt)
       this.dy = acceleration(this.dy, 0, ACCELERATION, dt)
-    } if (!keyboard.isPressed(RIGHT) && !keyboard.isPressed(LEFT) && keyboard.isPressed(UP) && !keyboard.isPressed(DOWN)) {
+    } if (!keyboard.isPressed(D) && !keyboard.isPressed(A) && keyboard.isPressed(W) && !keyboard.isPressed(S)) {
       this.dx = acceleration(this.dx, 0, ACCELERATION, dt)
       this.dy = acceleration(this.dy, -MAX_SPEED, ACCELERATION, dt)
-    } if (keyboard.isPressed(RIGHT) && !keyboard.isPressed(LEFT) && keyboard.isPressed(UP) && !keyboard.isPressed(DOWN)) {
+    } if (keyboard.isPressed(D) && !keyboard.isPressed(A) && keyboard.isPressed(W) && !keyboard.isPressed(S)) {
       this.dx = acceleration(this.dx, DIAGONAL_SPEED, ACCELERATION, dt)
       this.dy = acceleration(this.dy, -DIAGONAL_SPEED, ACCELERATION, dt)
-    } if (keyboard.isPressed(RIGHT) && !keyboard.isPressed(LEFT) && !keyboard.isPressed(UP) && !keyboard.isPressed(DOWN)) {
+    } if (keyboard.isPressed(D) && !keyboard.isPressed(A) && !keyboard.isPressed(W) && !keyboard.isPressed(S)) {
       this.dx = acceleration(this.dx, MAX_SPEED, ACCELERATION, dt)
       this.dy = acceleration(this.dy, 0, ACCELERATION, dt)
-    } if (keyboard.isPressed(RIGHT) && !keyboard.isPressed(LEFT) && !keyboard.isPressed(UP) && keyboard.isPressed(DOWN)) {
+    } if (keyboard.isPressed(D) && !keyboard.isPressed(A) && !keyboard.isPressed(W) && keyboard.isPressed(S)) {
       this.dx = acceleration(this.dx, DIAGONAL_SPEED, ACCELERATION, dt)
       this.dy = acceleration(this.dy, DIAGONAL_SPEED, ACCELERATION, dt)
-    } if (!keyboard.isPressed(RIGHT) && !keyboard.isPressed(LEFT) && !keyboard.isPressed(UP) && keyboard.isPressed(DOWN)) {
+    } if (!keyboard.isPressed(D) && !keyboard.isPressed(A) && !keyboard.isPressed(W) && keyboard.isPressed(S)) {
       this.dx = acceleration(this.dx, 0, ACCELERATION, dt)
       this.dy = acceleration(this.dy, MAX_SPEED, ACCELERATION, dt)
-    } if (!keyboard.isPressed(RIGHT) && keyboard.isPressed(LEFT) && !keyboard.isPressed(UP) && keyboard.isPressed(DOWN)) {
+    } if (!keyboard.isPressed(D) && keyboard.isPressed(A) && !keyboard.isPressed(W) && keyboard.isPressed(S)) {
       this.dx = acceleration(this.dx, -DIAGONAL_SPEED, ACCELERATION, dt)
       this.dy = acceleration(this.dy, DIAGONAL_SPEED, ACCELERATION, dt)
-    } if (!keyboard.isPressed(RIGHT) && keyboard.isPressed(LEFT) && !keyboard.isPressed(UP) && !keyboard.isPressed(DOWN)) {
+    } if (!keyboard.isPressed(D) && keyboard.isPressed(A) && !keyboard.isPressed(W) && !keyboard.isPressed(S)) {
       this.dx = acceleration(this.dx, -MAX_SPEED, ACCELERATION, dt)
       this.dy = acceleration(this.dy, 0, ACCELERATION, dt)
-    } if (!keyboard.isPressed(RIGHT) && keyboard.isPressed(LEFT) && keyboard.isPressed(UP) && !keyboard.isPressed(DOWN)) {
+    } if (!keyboard.isPressed(D) && keyboard.isPressed(A) && keyboard.isPressed(W) && !keyboard.isPressed(S)) {
       this.dx = acceleration(this.dx, -DIAGONAL_SPEED, ACCELERATION, dt)
       this.dy = acceleration(this.dy, -DIAGONAL_SPEED, ACCELERATION, dt)
     }
