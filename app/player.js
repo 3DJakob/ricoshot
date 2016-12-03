@@ -97,9 +97,12 @@ class Player {
   draw (game, ctx) {
     const { mouseX, mouseY } = game
 
+    const angle = Math.atan2(mouseY - this.y, mouseX - this.x)
+
     ctx.save()
 
     ctx.translate(this.x, this.y)
+    ctx.rotate(angle)
     ctx.translate(-this.anchorX, -this.anchorY)
 
     ctx.drawImage(this.img, 0, 0)
@@ -119,6 +122,7 @@ class Player {
     ctx.beginPath()
     ctx.moveTo(this.x, this.y)
     ctx.lineTo(mouseX, mouseY)
+    ctx.lineDashOffset = 10
     ctx.setLineDash([10, 100])
     ctx.stroke()
 
